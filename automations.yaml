@@ -1,1 +1,14 @@
-[]
+- id: '1590956718552'
+  alias: Start Bedroom AC Lockout After Turning Off
+  description: 'Starts timer to prevent restarting AC during unsafe cooldown period'
+  trigger:
+  - device_id: !secret BED_AC_POWER_SWITCH_SWITCH_DEVICE_ID
+    domain: switch
+    entity_id: switch.bed_ac_power_switch_switch_unsafe
+    platform: device
+    type: turned_off
+  condition: []
+  action:
+  - data: {}
+    entity_id: timer.bed_ac_lockout
+    service: timer.start
