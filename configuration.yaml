@@ -35,6 +35,25 @@ switch:
           data:
             entity_id: switch.bed_ac_power_switch_switch_unsafe
 
+cloud:
+  google_actions:
+    filter:
+      include_entities:
+        - switch.bedroom_ac_safe
+    entity_config:
+      switch.bedroom_ac_safe:
+        name: Bedroom AC 
+        aliases:
+         - bedroom air conditioning
+         - bedroom air conditioner 
+  alexa:
+    filter:
+      include_entities:
+        - switch.bedroom_ac_safe
+    entity_config:
+      switch.bedroom_ac_safe:
+        name: Bedroom AC 
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
