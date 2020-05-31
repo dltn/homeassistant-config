@@ -2,6 +2,9 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+zwave:
+  usb_path: /dev/ttyUSB0
+
 # Text to speech
 tts:
   - platform: google_translate
