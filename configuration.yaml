@@ -40,6 +40,7 @@ cloud:
     filter:
       include_entities:
         - switch.bedroom_ac_safe
+        - switch.stage_lights
     entity_config:
       switch.bedroom_ac_safe:
         name: Bedroom AC 
@@ -50,6 +51,7 @@ cloud:
     filter:
       include_entities:
         - switch.bedroom_ac_safe
+        - switch.stage_lights
     entity_config:
       switch.bedroom_ac_safe:
         name: Bedroom AC 
