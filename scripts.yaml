@@ -1,0 +1,12 @@
+living_ac_power:
+    sequence:
+    - service: shell_command.living_room_ac_power
+
+living_ac_warmer:
+    sequence:
+    - service: shell_command.living_room_ac_warmer
+
+living_ac_cooler:
+    sequence:
+    - service: shell_command.living_room_ac_cooler
+

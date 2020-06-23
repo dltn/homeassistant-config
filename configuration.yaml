@@ -41,12 +41,21 @@ cloud:
       include_entities:
         - switch.bedroom_ac_safe
         - switch.stage_lights
+        - script.living_ac_power
+        - script.living_ac_warmer
+        - script.living_ac_cooler
     entity_config:
       switch.bedroom_ac_safe:
         name: Bedroom AC 
         aliases:
          - bedroom air conditioning
          - bedroom air conditioner 
+      script.living_ac_power:
+        name: Living Room AC Power
+      script.living_ac_cooler:
+        name: Living Room AC Cooler
+      script.living_ac_warmer:
+        name: Living Room AC Warmer
   alexa:
     filter:
       include_entities:
@@ -56,7 +65,13 @@ cloud:
       switch.bedroom_ac_safe:
         name: Bedroom AC 
 
+shell_command:
+  living_room_ac_power: !secret LIVING_ROOM_AC_REMOTE_POWER_ENDPOINT
+  living_room_ac_warmer: !secret LIVING_ROOM_AC_REMOTE_WARMER_ENDPOINT
+  living_room_ac_cooler: !secret LIVING_ROOM_AC_REMOTE_COOLER_ENDPOINT
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
