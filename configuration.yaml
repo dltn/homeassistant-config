@@ -70,6 +70,22 @@ shell_command:
   living_room_ac_warmer: !secret LIVING_ROOM_AC_REMOTE_WARMER_ENDPOINT
   living_room_ac_cooler: !secret LIVING_ROOM_AC_REMOTE_COOLER_ENDPOINT
 
+sensor:
+  - platform: scrape
+    name: Bedroom Temperature 
+    resource: !secret BEDROOM_CLIMATE_SENSOR_TEMP_ENDPOINT 
+    value_template: '{{ value | float }}'
+    select: "b"
+    unit_of_measurement: 'F'
+    verify_ssl: false
+  - platform: scrape
+    name: Bedroom Humidity 
+    resource: !secret BEDROOM_CLIMATE_SENSOR_HUMIDITY_ENDPOINT 
+    value_template: '{{ value | float }}'
+    select: "b"
+    unit_of_measurement: '%'
+    verify_ssl: false
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
