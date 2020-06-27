@@ -2,11 +2,13 @@
 
 I automate my home using these files and [HomeAssistant](https://www.home-assistant.io/)!
 
+Specific implementation details [are hidden](https://www.home-assistant.io/docs/configuration/secrets/) for security.
+
+
 ## Notable examples
 * [Cool-down Switches](https://daltonf.com/cool-down-switch/)
 * [Smart Couch](https://daltonf.com/smart-couch/)
 
-Specific implementation details [are hidden](https://www.home-assistant.io/docs/configuration/secrets/) for security.
 
 ## What I Use
 

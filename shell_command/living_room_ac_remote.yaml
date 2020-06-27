@@ -1,0 +1,3 @@
+living_room_ac_power: !secret LIVING_ROOM_AC_REMOTE_POWER_ENDPOINT
+living_room_ac_warmer: !secret LIVING_ROOM_AC_REMOTE_WARMER_ENDPOINT
+living_room_ac_cooler: !secret LIVING_ROOM_AC_REMOTE_COOLER_ENDPOINT

@@ -1,0 +1,14 @@
+  - platform: template
+    switches:
+      bedroom_ac_safe:
+        availability_template: "{{ not is_state('timer.bed_ac_lockout', 'active') }}"
+        value_template: "{{ is_state('switch.bed_ac_power_switch_switch_unsafe', 'on') }}"
+        friendly_name: Bedroom AC
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.bed_ac_power_switch_switch_unsafe
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.bed_ac_power_switch_switch_unsafe

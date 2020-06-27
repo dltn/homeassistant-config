@@ -1,5 +1,4 @@
 
-# Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
 homeassistant:
@@ -10,7 +9,6 @@ homeassistant:
 zwave:
   usb_path: /dev/ttyUSB0
 
-# Text to speech
 tts:
   - platform: google_translate
 
@@ -19,88 +17,12 @@ timer:
     duration: '00:03:00'
     icon: 'mdi:lock-clock'
 
-switch:
-  - platform: template 
-    switches:
-      bedroom_ac_safe:
-        availability_template: "{{ not is_state('timer.bed_ac_lockout', 'active') }}"
-        value_template: "{{ is_state('switch.bed_ac_power_switch_switch_unsafe', 'on') }}"
-        friendly_name: Bedroom AC
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.bed_ac_power_switch_switch_unsafe
-        turn_off:
-          service: switch.turn_off
-          data:
-            entity_id: switch.bed_ac_power_switch_switch_unsafe
-
-cloud:
-  google_actions:
-    filter:
-      include_entities:
-        - switch.bedroom_ac_safe
-        - switch.stage_lights
-        - script.living_ac_power
-        - script.living_ac_warmer
-        - script.living_ac_cooler
-    entity_config:
-      switch.bedroom_ac_safe:
-        name: Bedroom AC 
-        aliases:
-         - bedroom air conditioning
-         - bedroom air conditioner 
-      script.living_ac_power:
-        name: Living Room AC Power
-      script.living_ac_cooler:
-        name: Living Room AC Cooler
-      script.living_ac_warmer:
-        name: Living Room AC Warmer
-  alexa:
-    filter:
-      include_entities:
-        - switch.bedroom_ac_safe
-        - switch.stage_lights
-    entity_config:
-      switch.bedroom_ac_safe:
-        name: Bedroom AC 
-
-shell_command:
-  living_room_ac_power: !secret LIVING_ROOM_AC_REMOTE_POWER_ENDPOINT
-  living_room_ac_warmer: !secret LIVING_ROOM_AC_REMOTE_WARMER_ENDPOINT
-  living_room_ac_cooler: !secret LIVING_ROOM_AC_REMOTE_COOLER_ENDPOINT
-
-sensor:
-  - platform: scrape
-    name: Bedroom Temperature 
-    resource: !secret BEDROOM_CLIMATE_SENSOR_TEMP_ENDPOINT 
-    value_template: '{{ value | float }}'
-    select: "b"
-    unit_of_measurement: 'F'
-    verify_ssl: false
-  - platform: scrape
-    name: Bedroom Humidity 
-    resource: !secret BEDROOM_CLIMATE_SENSOR_HUMIDITY_ENDPOINT 
-    value_template: '{{ value | float }}'
-    select: "b"
-    unit_of_measurement: '%'
-    verify_ssl: false
-
-climate:
-  - platform: generic_thermostat
-    name: Bedroom Climate
-    heater: switch.bed_ac_power_switch_switch_unsafe
-    ac_mode: true
-    target_temp: 78
-    hot_tolerance: 3.0
-    min_cycle_duration: 
-      minutes: 5
-    target_sensor: sensor.bedroom_temperature 
-    initial_hvac_mode: "off"
-    precision: 0.1
-
+automation: !include_dir_merge_list automation/
+climate: !include climate.yaml
+cloud: !include cloud.yaml
 group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
 scene: !include scenes.yaml
-
+script: !include_dir_merge_named script/
+sensor: !include_dir_merge_list sensor/
+shell_command: !include_dir_merge_named shell_command/
+switch: !include_dir_merge_list switch/
