@@ -1,0 +1,15 @@
+  - platform: scrape
+    name: Living Room Temperature 
+    resource: !secret LIVING_ROOM_CLIMATE_SENSOR_TEMP_ENDPOINT
+    value_template: '{{ value | float }}'
+    select: "b"
+    unit_of_measurement: 'F'
+    verify_ssl: false
+  - platform: scrape
+    name: Living Room Humidity
+    resource: !secret LIVING_ROOM_CLIMATE_SENSOR_HUMIDITY_ENDPOINT
+    value_template: '{{ value | float }}'
+    select: "b"
+    unit_of_measurement: '%'
+    verify_ssl: false
+
